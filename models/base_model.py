@@ -8,7 +8,7 @@ import json
 
 class BaseModel:
     """
-    BaseModel definition
+    BaseModel definition for AirBnB clone project
     """
     def __init__(self, id=None):
         """
@@ -53,6 +53,7 @@ class BaseModel:
         Return:
             entire dictionary of instance
         """
+        #self.__class__ = ?BaseModel
         #self.created_at =
         #self.updated_at =
         #return self.__dict__
