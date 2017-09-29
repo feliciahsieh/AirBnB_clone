@@ -8,7 +8,7 @@ import datetime
 
 class BaseModel:
     """
-    BaseModel definition for AirBnB clone project
+    class BaseModel definition for AirBnB clone project
     This is the core object from which all objects are derived
     """
     def __init__(self):
@@ -25,7 +25,7 @@ class BaseModel:
 
     def __str__(self):
         """
-        __str__ - print method for BaseModel
+        __str__ - print method for BaseModel instance
         Args:
             None
         Return:
@@ -37,7 +37,7 @@ class BaseModel:
     def save(self):
         """
         save - updates public instance attribute, updated_at, with
-        current timestamp
+            current timestamp
         Args:
             None
         Return:
@@ -47,11 +47,12 @@ class BaseModel:
 
     def to_dict(self):
         """
-        to_dict - returns dictionary with all key/value pairs of __dict__
+        to_dict - returns dictionary with a copy all key/value pairs of __dict__
         Args:
             None
         Return:
-            entire copy of dictionary instance with some JSON modifications
+            entire copy of dictionary instance and must stringify some
+            JSON modifications
         """
         d = {}
         d = self.__dict__.copy()
