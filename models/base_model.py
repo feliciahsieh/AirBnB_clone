@@ -53,4 +53,4 @@ class BaseModel:
         Return:
             entire dictionary of instance
         """
-        return self.__dict__
+        return self.__dict__.copy()
