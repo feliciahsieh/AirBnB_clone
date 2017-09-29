@@ -5,7 +5,6 @@ File: base_model.py
 import json
 
 
-
 class BaseModel:
     """
     BaseModel definition for AirBnB clone project
@@ -23,8 +22,8 @@ class BaseModel:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-        #self.created_at = x
-        #self.updated_at = x
+        # self.created_at = x
+        # self.updated_at = x
 
     def __str__(self):
         """
@@ -34,7 +33,7 @@ class BaseModel:
         Return:
             None
         """
-        #print("[{}] ({}) {}".format(class, self.id, self.__dict__))
+        # print("[{}] ({}) {}".format(class, self.id, self.__dict__))
     def save(self):
         """
         save - updates public instance attribute, udpated_at, and timestamp
@@ -53,7 +52,7 @@ class BaseModel:
         Return:
             entire dictionary of instance
         """
-        #self.__class__ = ?BaseModel
-        #self.created_at =
-        #self.updated_at =
-        #return self.__dict__
+        # self.__class__ = ?BaseModel
+        # self.created_at =
+        # self.updated_at =
+        # return self.__dict__
