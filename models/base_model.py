@@ -5,9 +5,11 @@ File: base_model.py
 import uuid
 import datetime
 
+
 class BaseModel:
     """
     BaseModel definition for AirBnB clone project
+    This is the core object from which all objects are derived
     """
     def __init__(self):
         """
@@ -29,17 +31,19 @@ class BaseModel:
         Return:
             None
         """
-        return ("[{}] ({}) {}".format(self.__class__, self.id, self.__dict__))
+        return ("[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
         """
-        save - updates public instance attribute, updated_at, and timestamp
+        save - updates public instance attribute, updated_at, with
+        current timestamp
         Args:
             None
         Return:
             None
         """
-        # self.updated_at = datetime.datetime.now()
+        self.updated_at = str(datetime.datetime.now())
 
     def to_dict(self):
         """
@@ -49,5 +53,4 @@ class BaseModel:
         Return:
             entire dictionary of instance
         """
-        # self.updated_at.isoformat()
         return self.__dict__
