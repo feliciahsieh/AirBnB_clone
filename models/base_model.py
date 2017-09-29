@@ -11,17 +11,35 @@ class BaseModel:
     class BaseModel definition for AirBnB clone project
     This is the core object from which all objects are derived
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         __init__ - initialze BaseModel object
         Args:
             id(int) - initialize obj with ID or use autonumber ad ID
+            args(tuple) - should have zero arguments (not used)
+            kwargs(dict) - if variable exists, then init instance with data
         Return:
             None
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if len(args):
+            print("base_model.py: Should not have passed in args to __init__()")
+            return
+        elif len(kwargs):
+            if "id" in kwargs:
+                self.id = kwargs.get("id")
+            if "__class__" in kwargs:
+                self.__class__ = kwargs.get("__class__")
+            if "created_at" in kwargs:
+                tmp = kwargs.get("created_at")
+                self.created_at = x
+            if "updated_at" in kwargs:
+                self.updated_at = kwargs.get("updated_at")
+            if "created_at" in kwargs:
+                self.created_at = kwargs.get("created_at")
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def __str__(self):
         """
@@ -57,6 +75,8 @@ class BaseModel:
         d = {}
         d = self.__dict__.copy()
         d['__class__'] = "BaseModel"
-        d['created_at'] = str(self.__dict__['created_at'])
-        d['updated_at'] = str(self.__dict__['updated_at'])
+
+        format = "%Y-%m-%dT%H:%M:%S.%f"
+        d['created_at'] = str(self.__dict__['created_at'].strftime(format))
+        d['updated_at'] = str(self.__dict__['updated_at'].strftime(format))
         return d
