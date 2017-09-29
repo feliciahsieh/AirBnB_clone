@@ -20,7 +20,7 @@ class BaseModel:
             None
         """
         self.id = str(uuid.uuid4())
-        self.created_at = str(datetime.datetime.now())
+        self.created_at = datetime.datetime.now()
         self.updated_at = self.created_at
 
     def __str__(self):
@@ -51,6 +51,11 @@ class BaseModel:
         Args:
             None
         Return:
-            entire dictionary of instance
+            entire copy of dictionary instance with some JSON modifications
         """
-        return self.__dict__.copy()
+        d = {}
+        d = self.__dict__.copy()
+        d['__class__'] = "BaseModel"
+        d['created_at'] = str(self.__dict__['created_at'])
+        d['updated_at'] = str(self.__dict__['updated_at'])
+        return d
