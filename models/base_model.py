@@ -29,7 +29,8 @@ class BaseModel:
         Return:
             None
         """
-        # print("[{}] ({}) {}".format(self.__name__.__class__, self.id, self.__dict__))
+        return ("[{}] ({}) {}".format(self.__class__, self.id, self.__dict__))
+
     def save(self):
         """
         save - updates public instance attribute, updated_at, and timestamp
