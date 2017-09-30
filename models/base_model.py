@@ -4,7 +4,7 @@ File: base_model.py
 """
 import uuid
 import datetime
-
+from models import storage
 
 class BaseModel:
     """
@@ -22,25 +22,29 @@ class BaseModel:
         Return:
             None
         """
+        format = "%Y-%m-%dT%H:%M:%S.%f"
         if len(args):
             print("base_model.py: Should not have passed in args to __init__()")
             return
         elif len(kwargs):
-            if "id" in kwargs:
-                self.id = kwargs.get("id")
-
-            format = "%Y-%m-%dT%H:%M:%S.%f"
-
-            if "created_at" in kwargs:
-                self.created_at = datetime.datetime.strptime(
-                    kwargs["created_at"], format)
-            if "updated_at" in kwargs:
-                self.updated_at = datetime.datetime.strptime(
-                    kwargs["updated_at"], format)
+            for key in kwargs:
+                if key == "id":
+                    self.id = kwargs.get("id")
+                    continue
+                if key == "created_at":
+                    self.created_at = datetime.datetime.strptime(
+                        kwargs["created_at"], format)
+                    continue
+                if key == "updated_at":
+                    self.updated_at = datetime.datetime.strptime(
+                        kwargs["updated_at"], format)
+                    continue
+                setattr(self, key,  kwargs[key])
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
+        storage.new(self)
 
     def __str__(self):
         """
@@ -63,7 +67,7 @@ class BaseModel:
             None
         """
         self.updated_at = datetime.datetime.now()
-
+        storage.save()
     def to_dict(self):
         """
         to_dict - returns dictionary with a copy all key/value pairs of __dict__
@@ -75,6 +79,7 @@ class BaseModel:
         """
         d = {}
         d = self.__dict__.copy()
+        print("TODICT INITIAl", d)
         d['__class__'] = "BaseModel"
 
         format = "%Y-%m-%dT%H:%M:%S.%f"
