@@ -16,14 +16,14 @@ class FileStorage:
 
     def new(self, obj):
         """sets in __objects the obj given"""
-        print("BEFORE NEW", self.__objects)
-        self.__objects[obj.__class__.__name__ + "." + obj.id] = obj.to_dict()
-        print("FIRST HERE",self.__objects)
+        self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
 
     def save(self):
         """serializes __objects to Json File"""
-        print("HERE", self.__objects)
-        js = json.dumps(self.__objects)
+        js = {}
+        for k in self.__objects:
+            js[k] = self.__objects[k].to_dict()
+        js = json.dumps(js)
         with open(self.__file_path, "w") as jsf:
             jsf.write(js)
 
@@ -32,6 +32,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as jsf:
                 js = jsf.read()
-            self.__objects = json.loads(js)
+                #fix here
+           self.__objects = json.loads(js)
         except:
             return

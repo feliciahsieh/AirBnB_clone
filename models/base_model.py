@@ -23,27 +23,25 @@ class BaseModel:
             None
         """
         format = "%Y-%m-%dT%H:%M:%S.%f"
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now()
         if len(args):
             print("base_model.py: Should not have passed in args to __init__()")
             return
-        elif len(kwargs):
-            for key in kwargs:
-                if key == "id":
-                    self.id = kwargs.get("id")
-                    continue
-                if key == "created_at":
-                    self.created_at = datetime.datetime.strptime(
-                        kwargs["created_at"], format)
-                    continue
-                if key == "updated_at":
-                    self.updated_at = datetime.datetime.strptime(
-                        kwargs["updated_at"], format)
-                    continue
-                setattr(self, key,  kwargs[key])
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
+        for key in kwargs:
+            if key == "id":
+                self.id = kwargs.get("id")
+                continue
+            if key == "created_at":
+                self.created_at = datetime.datetime.strptime(
+                    kwargs["created_at"], format)
+                continue
+            if key == "updated_at":
+                self.updated_at = datetime.datetime.strptime(
+                    kwargs["updated_at"], format)
+                continue
+            setattr(self, key,  kwargs[key])
         storage.new(self)
 
     def __str__(self):
@@ -68,6 +66,7 @@ class BaseModel:
         """
         self.updated_at = datetime.datetime.now()
         storage.save()
+
     def to_dict(self):
         """
         to_dict - returns dictionary with a copy all key/value pairs of __dict__
@@ -79,7 +78,6 @@ class BaseModel:
         """
         d = {}
         d = self.__dict__.copy()
-        print("TODICT INITIAl", d)
         d['__class__'] = "BaseModel"
 
         format = "%Y-%m-%dT%H:%M:%S.%f"
