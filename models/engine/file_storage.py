@@ -32,7 +32,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as jsf:
                 js = jsf.read()
-                #fix here
-           self.__objects = json.loads(js)
+                # fix here
+            self.__objects = json.loads(js)
         except:
             return
