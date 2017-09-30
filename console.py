@@ -6,25 +6,16 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """
     class HBNBCommand - console for the AirBnB clone
+        Note: "help <cmd>" functionality is provided by cmd module
     """
 
     def do_quit(self, args):
-        """
-        do_quit - Quit command to exit the program
-        Args:
-            args(tuple) - arguments sent with the quit command
-        Return:
-            None
+        """Quit command to exit the program
         """
         raise SystemExit
 
     def do_EOF(self, args):
-        """
-        do_EOF - EOF command to exit the program
-        Args:
-            None
-        Return:
-            None
+        """EOF command to exit the program
         """
         raise SystemExit
 
