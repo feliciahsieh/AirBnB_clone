@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""Command Intrpreter - Console"""
+"""Command Interpreter - Console"""
 import cmd
+
 
 class HBNBCommand(cmd.Cmd):
     """class HBNBCommand"""
@@ -14,5 +15,5 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     prompt = HBNBCommand()
-    prompt.prompt = '(hbnb)'
+    prompt.prompt = '(hbnb) '
     prompt.cmdloop('')

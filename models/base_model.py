@@ -6,6 +6,7 @@ import uuid
 import datetime
 from models import storage
 
+
 class BaseModel:
     """
     class BaseModel definition for AirBnB clone project
@@ -27,7 +28,7 @@ class BaseModel:
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
         if len(args):
-            print("base_model.py: Should not have passed in args to __init__()")
+            print("base_model.py: Should have zero args to __init__()")
             return
         for key in kwargs:
             if key == "id":
@@ -69,7 +70,7 @@ class BaseModel:
 
     def to_dict(self):
         """
-        to_dict - returns dictionary with a copy all key/value pairs of __dict__
+        to_dict - return dictionary with copy all key/value pairs of __dict__
         Args:
             None
         Return:
