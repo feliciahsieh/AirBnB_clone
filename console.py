@@ -28,22 +28,37 @@ class HBNBCommand(cmd.Cmd):
 
     # ----- basic CRUD commands -----
     def do_create(self, arg):
-        """Create BaseModel instance"""
+        """Create BaseModel instance, saves to JSON file, prints ID"""
         if len(arg) == 0:
             print("** class name missing **")
         elif arg != "BaseModel":
             print("** class doesn't exist **")
         else:
-            bm = BaseModel()
-            bm.save()
-            print('{}'.format(bm.id))
+            obj = BaseModel()
+            obj.save()
+            print('{}'.format(obj.id))
 
-    def do_show(self):
+    def do_show(self, arg):
         """Show object"""
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[1] != "BaseModel":
+            print("** class doesn't exist **")
+        elif arg[2] == None:
+            print("** instance id missing **")
+        # else:
+            # objAll = BaseModel.all()
+            # if arg[2] in objAll: #Must iterate and find matching ID
+            # If instance of the class name doesn't exist for the id
+            # print("** no instance found **") (ex: $ show BaseModel 121212)
+        else:
+            # prints the string of instance of class name and id.
+            # Ex: $ show BaseModel 1234-1234-1234
+            pass # temp statement
 
-    # def do_destroy(self):
+    # def do_destroy(self, arg):
     # def do_all(self):
-    # def do_update(self):
+    # def do_update(self, arg):
 
 if __name__ == '__main__':
 
