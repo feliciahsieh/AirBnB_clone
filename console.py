@@ -75,29 +75,31 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """Destroy an object"""
         input = arg.split()
+        allObjs = models.storage.all()
         if len(arg) == 0:
             print("** class name missing **")
         elif input[0] != "BaseModel":
+            print(input[0])
             print("** class doesn't exist **")
         elif len(input) == 1:
             print("** instance id missing **")
-            allObjs = models.storage.all()
-            # if input[0] in allObjs.keys(): # missing logic
-            # destroy object # missing logic
-            # allObjs.save() to file
-            # else:
-            #     print("** no instance found **")
+        elif input[1] in allObjs.keys():
+            print("Destroy:", input[1])
+            del allObjs[input[1]] # missing logic
+            allObjs.save()
+        else:
+            print("** no instance found **")
 
     def do_all(self, arg):
         """Show all objects"""
         input = arg.split()
+        allObjs = models.storage.all()
         if len(arg) == 0:
             print(models.storage.all())
         elif (len(input) == 1 and input[0] == "BaseModel"):
-            allObjs = models.storage.all()
-            # if input[0] in allObjs.keys(): # missing logic
-            for i in allObjs:
-                print(i)  # missing logic
+            for k in allObjs:
+                if input[0] in k:
+                    print(allObjs[k])  # missing logic
         else:
             print("** class doesn't exist **")
 
