@@ -10,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
         Note: "help <cmd>" functionality is provided by cmd module
     """
 
-    # ----- basic Holberton AirBnB commands -----
+    # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
         """Quit command to exit the program
         """
@@ -61,20 +61,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Show all objects"""
-        isPrint = False
-        if len(arg) == 1 and arg[0] == "all":
-            isPrint = True
-        elif len(arg) == 2 and arg[0] == "all" and arg[2] == "BaseModel":
-            isPrint = True
+        input = arg.split()
+        if len(arg) == 0:
+            print(storage.all())
+        elif (len(input) == 1 and input[0] == "BaseModel"):
+            allObjs = storage.all()
+            # if input[0] in allObjs.keys(): # missing logic
+            print(allObjs) # missing logic
         else:
             print("** class doesn't exist **")
-        if isPrint:
-            allObjs = storage.all()
-            if input[1] in allObjs.keys():
-                for input[1] in allObjs.keys():
-                    print(allObjs[input[1]])
-            else:
-                print("** no instance found **")
 
     # def do_update(self, arg):
     # something
