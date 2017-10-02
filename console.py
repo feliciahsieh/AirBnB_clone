@@ -107,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(input) == 1:
             print("** instance id missing **")
-        elif input[] not in { "1234-1234-1234" }: # missing logic
+        elif input[2] not in { "1234-1234-1234" }: # missing logic
             print("** no instance found **")
         elif len(input) == 2:
             print("** attribute name missing **")
@@ -115,6 +115,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         elif len(input) > 4:
             # don't execute
+            pass
 
 if __name__ == '__main__':
     console = HBNBCommand()
