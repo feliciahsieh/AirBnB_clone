@@ -94,11 +94,12 @@ class HBNBCommand(cmd.Cmd):
         input = arg.split()
         allObjs = models.storage.all()
         if len(arg) == 0:
-            print(models.storage.all())
+            for k in allObjs:
+                print(allObjs[k])
         elif (len(input) == 1 and input[0] == "BaseModel"):
             for k in allObjs:
-                if input[0] in k:
-                    print(allObjs[k])  # missing logic
+                if "BaseModel" in k:
+                    print(allObjs[k])
         else:
             print("** class doesn't exist **")
 
