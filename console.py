@@ -8,6 +8,12 @@ class HBNBCommand(cmd.Cmd):
     """
     class HBNBCommand - console for the AirBnB clone
         Note: "help <cmd>" functionality is provided by cmd module
+    Usage:
+        create [class=BaseModel]
+        show [class=BaseModel [id=12234-1234-1234]]
+        destroy [class=BaseModel] [id=1234-1234-1234]
+        all | all [class=BaseModel]
+        update [class=BaseModel] [id=1234-1234-1234] [key] [value]
     """
 
     # ----- basic AirBnB clone commands -----
@@ -56,8 +62,22 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** no instance found **")
 
-    # def do_destroy(self, arg):
-    # something
+    def do_destroy(self, arg):
+        """Destroy an object"""
+        input = arg.split()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif input[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(input) == 1:
+            print("** instance id missing **")
+
+            allObjs = storage.all()
+            # if input[0] in allObjs.keys(): # missing logic
+            # destroy object # missing logic
+            # save to file
+            # else:
+                # print("** no instance found **")
 
     def do_all(self, arg):
         """Show all objects"""
