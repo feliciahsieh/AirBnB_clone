@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """Command Interpreter - Console"""
+
 import cmd
 from models.base_model import BaseModel
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -15,6 +17,10 @@ class HBNBCommand(cmd.Cmd):
         all | all [class=BaseModel]
         update [class=BaseModel] [id=1234-1234-1234] [key] [value]
     """
+    def __init__(self):
+        cmd.Cmd.__init__(self)
+        self.prompt = "(hbnb) "
+        self.intro = "** Welcome to the AirBnB clone. Type help to list cmds **"
 
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
@@ -28,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         raise SystemExit
 
     def emptyline(self):
-        """Prevents previous command from executing again
+        """Do nothing on empty input line
         """
         pass
 
@@ -95,8 +101,5 @@ class HBNBCommand(cmd.Cmd):
     # something
 
 if __name__ == '__main__':
-
-    intro = '** Welcome to the AirBnB clone. Type help or ? to list commands **'
-    prompt = HBNBCommand()
-    prompt.prompt = '(hbnb) '
-    prompt.cmdloop(intro)
+    console = HBNBCommand()
+    console . cmdloop()
