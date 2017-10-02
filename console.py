@@ -2,7 +2,7 @@
 """Command Interpreter - Console"""
 import cmd
 from models.base_model import BaseModel
-
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    # ----- basic CRUD commands -----
+    # ----- basic Console CRUD commands -----
     def do_create(self, arg):
         """Create BaseModel instance, saves to JSON file, prints ID"""
         if len(arg) == 0:
@@ -40,25 +40,44 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Show object"""
+        input = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[1] != "BaseModel":
-            print("** class doesn't exist **")
-        elif arg[2] == None:
-            print("** instance id missing **")
-        # else:
-            # objAll = BaseModel.all()
-            # if arg[2] in objAll: #Must iterate and find matching ID
-            # If instance of the class name doesn't exist for the id
-            # print("** no instance found **") (ex: $ show BaseModel 121212)
         else:
-            # prints the string of instance of class name and id.
-            # Ex: $ show BaseModel 1234-1234-1234
-            pass # temp statement
+            if input[0] != "BaseModel":
+                print("** class doesn't exist **")
+            elif len(input) == 1:
+                print("** instance id missing **")
+            else:
+                allObjs = storage.all()
+                if input[1] in allObjs.keys():
+                    for input[1] in allObjs.keys():
+                        print(allObjs[input[1]])
+                else:
+                    print("** no instance found **")
 
     # def do_destroy(self, arg):
-    # def do_all(self):
+    # something
+
+    def do_all(self, arg):
+        """Show all objects"""
+        isPrint = False
+        if len(arg) == 1 and arg[0] == "all":
+            isPrint = True
+        elif len(arg) == 2 and arg[0] == "all" and arg[2] == "BaseModel":
+            isPrint = True
+        else:
+            print("** class doesn't exist **")
+        if isPrint:
+            allObjs = storage.all()
+            if input[1] in allObjs.keys():
+                for input[1] in allObjs.keys():
+                    print(allObjs[input[1]])
+            else:
+                print("** no instance found **")
+
     # def do_update(self, arg):
+    # something
 
 if __name__ == '__main__':
 
