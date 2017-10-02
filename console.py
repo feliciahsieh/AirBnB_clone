@@ -65,12 +65,11 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
             else:
                 allObjs = models.storage.all()
-                print(allObjs)
-                # if input[1] in allObjs.keys():
-                #    for input[1] in allObjs.keys():
-                #        print(allObjs[input[1]])
-                # else:
-                #    print("** no instance found **")
+                realID = "BaseModel" + "." + input[1]
+                if realID in allObjs.keys():
+                    print(allObjs[input[1]])
+                else:
+                    print("** no instance found **")
 
     def do_destroy(self, arg):
         """Destroy an object"""
@@ -107,13 +106,14 @@ class HBNBCommand(cmd.Cmd):
         """Update obj atribute with info
         """
         input = arg.split()
+        allObjs = models.storage.all()
         if len(input) == 0:
             print("** class name missing **")
         elif input[0] != "BaseModel":
             print("** class doesn't exist **")
         elif len(input) == 1:
             print("** instance id missing **")
-        elif input[2] not in { "1234-1234-1234" }: # missing logic
+        elif input[2] not in allObjs: # missing logic
             print("** no instance found **")
         elif len(input) == 2:
             print("** attribute name missing **")
