@@ -116,6 +116,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(input) > 4:
             # don't execute
             pass
+        else:
+            pass
 
 if __name__ == '__main__':
     console = HBNBCommand()
