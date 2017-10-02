@@ -66,14 +66,16 @@ class HBNBCommand(cmd.Cmd):
             else:
                 allObjs = models.storage.all()
                 realID = "BaseModel" + "." + input[1]
-                if realID in allObjs.keys():
-                    print(allObjs[input[1]])
+                if realID in allObjs:
+                    print(allObjs[realID])
                 else:
                     print("** no instance found **")
 
     def do_destroy(self, arg):
         """Destroy an object"""
         input = arg.split()
+        if len(input) == 2:
+            realID = "BaseModel" + "." + input[1]
         allObjs = models.storage.all()
         if len(arg) == 0:
             print("** class name missing **")
@@ -82,10 +84,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(input) == 1:
             print("** instance id missing **")
-        elif input[1] in allObjs.keys():
-            print("Destroy:", input[1])
-            del allObjs[input[1]] # missing logic
-            allObjs.save()
+        elif realID in allObjs:
+            allObjs.pop(realID)
         else:
             print("** no instance found **")
 
