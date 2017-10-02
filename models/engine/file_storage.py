@@ -34,7 +34,7 @@ class FileStorage:
         Return:
             None
         """
-        self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
+        self.__objects[obj.__class__.__name__ + "." + str(obj.id)] = obj
 
     def save(self):
         """
@@ -59,10 +59,12 @@ class FileStorage:
         Return:
             None
         """
+        from models.base_model import BaseModel
         try:
             with open(self.__file_path, "r") as jsf:
                 js = jsf.read()
-                # fix here
-            self.__objects = json.loads(js)
+            js = json.loads(js)
+            for key in js:
+                self.__objects[key] = BaseModel(**js[key])
         except:
             return

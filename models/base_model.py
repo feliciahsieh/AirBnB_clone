@@ -42,8 +42,11 @@ class BaseModel:
                 self.updated_at = datetime.datetime.strptime(
                     kwargs["updated_at"], format)
                 continue
+            if key == "__class__":
+                continue
             setattr(self, key,  kwargs[key])
         storage.new(self)
+        storage.save()
 
     def __str__(self):
         """
