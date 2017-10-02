@@ -2,8 +2,9 @@
 """Command Interpreter - Console"""
 
 import cmd
+import models
+# from models import storage
 from models.base_model import BaseModel
-from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,7 +21,9 @@ class HBNBCommand(cmd.Cmd):
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.prompt = "(hbnb) "
-        self.intro = "* Welcome to the AirBnB clone. Type help to list cmds *"
+        self.intro =  "******************************************************\n"
+        self.intro += "* Welcome to the AirBnB clone. Type help for cmds    *\n"
+        self.intro += "******************************************************\n"
 
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
@@ -51,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
             print('{}'.format(obj.id))
 
     def do_show(self, arg):
-        """Show object"""
+        """Show class object with ID"""
         input = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
@@ -61,12 +64,13 @@ class HBNBCommand(cmd.Cmd):
             elif len(input) == 1:
                 print("** instance id missing **")
             else:
-                allObjs = storage.all()
-                if input[1] in allObjs.keys():
-                    for input[1] in allObjs.keys():
-                        print(allObjs[input[1]])
-                else:
-                    print("** no instance found **")
+                allObjs = models.storage.all()
+                print(allObjs)
+                # if input[1] in allObjs.keys():
+                #    for input[1] in allObjs.keys():
+                #        print(allObjs[input[1]])
+                # else:
+                #    print("** no instance found **")
 
     def do_destroy(self, arg):
         """Destroy an object"""
@@ -77,11 +81,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(input) == 1:
             print("** instance id missing **")
-
-            allObjs = storage.all()
+            allObjs = models.storage.all()
             # if input[0] in allObjs.keys(): # missing logic
             # destroy object # missing logic
-            # save to file
+            # allObjs.save() to file
             # else:
             #     print("** no instance found **")
 
@@ -89,11 +92,12 @@ class HBNBCommand(cmd.Cmd):
         """Show all objects"""
         input = arg.split()
         if len(arg) == 0:
-            print(storage.all())
+            print(models.storage.all())
         elif (len(input) == 1 and input[0] == "BaseModel"):
-            allObjs = storage.all()
+            allObjs = models.storage.all()
             # if input[0] in allObjs.keys(): # missing logic
-            print(allObjs)  # missing logic
+            for i in allObjs:
+                print(i)  # missing logic
         else:
             print("** class doesn't exist **")
 
@@ -117,8 +121,10 @@ class HBNBCommand(cmd.Cmd):
             # don't execute
             pass
         else:
+            # allObjs = models.storage.all()
+            # allObjs.save()
             pass
 
 if __name__ == '__main__':
     console = HBNBCommand()
-    console . cmdloop()
+    console.cmdloop()
