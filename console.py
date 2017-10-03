@@ -3,7 +3,6 @@
 
 import cmd
 import models
-# from models import storage
 from models.base_model import BaseModel
 
 
@@ -108,25 +107,26 @@ class HBNBCommand(cmd.Cmd):
         """
         input = arg.split()
         allObjs = models.storage.all()
-        if len(input) == 0:
+        insize = len(input)
+        if insize == 0:
             print("** class name missing **")
         elif input[0] != "BaseModel":
             print("** class doesn't exist **")
-        elif len(input) == 1:
+        elif insize == 1:
             print("** instance id missing **")
-        elif input[2] not in allObjs: # missing logic
-            print("** no instance found **")
-        elif len(input) == 2:
+        elif insize == 2:
             print("** attribute name missing **")
-        elif input[2] not in allObjs.keys(): # missing logic
+        elif insize == 3:
             print("** value missing **")
-        elif len(input) > 4:
-            # don't execute
-            pass
-        else:
-            # allObjs = models.storage.all()
-            # allObjs.save()
-            pass
+        if insize >= 4:
+            realID = input[0] + "." + input[1]    
+            if realID in allObjs:
+                d = allObjs[realID].to_dict()
+                d[input[2]] = input[3]
+                d.pop("updated_at")
+                BaseModel(**d)
+            else:
+                print("** no instance found **")
 
 if __name__ == '__main__':
     console = HBNBCommand()
