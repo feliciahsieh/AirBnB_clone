@@ -61,7 +61,7 @@ class FileStorage:
         """
         from models.base_model import BaseModel
         from models.user import User
-        classesD = {'BaseModel':BaseModel, 'User':User}
+        classesD = {'BaseModel': BaseModel, 'User': User}
         try:
             with open(self.__file_path, "r") as jsf:
                 js = jsf.read()
