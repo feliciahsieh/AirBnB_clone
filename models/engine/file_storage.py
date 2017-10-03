@@ -60,11 +60,15 @@ class FileStorage:
             None
         """
         from models.base_model import BaseModel
+        from models.user import User
+        classesD = {'BaseModel':BaseModel, 'User':User}
         try:
             with open(self.__file_path, "r") as jsf:
                 js = jsf.read()
             js = json.loads(js)
             for key in js:
-                self.__objects[key] = BaseModel(**js[key])
+                name = key.split(".")[0]
+                if name in classesD:
+                    self.__objects[key] = classesD[name](**js[key])
         except:
             return

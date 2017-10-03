@@ -4,7 +4,7 @@
 import cmd
 import models
 from models.base_model import BaseModel
-
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -23,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
         self.intro =  "******************************************************\n"
         self.intro += "* Welcome to the AirBnB clone. Type help for cmds    *\n"
         self.intro += "******************************************************\n"
+        self.types = {'BaseModel':BaseModel, 'User':User}
 
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
@@ -45,49 +46,50 @@ class HBNBCommand(cmd.Cmd):
         """Create BaseModel instance, saves to JSON file, prints ID"""
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg != "BaseModel":
-            print("** class doesn't exist **")
-        else:
-            obj = BaseModel()
+            return
+        if arg in self.types:
+            obj = self.types[arg]()
             obj.save()
             print('{}'.format(obj.id))
+        else:
+            print("** class doesn't exist **")
 
     def do_show(self, arg):
         """Show class object with ID"""
         input = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        else:
-            if input[0] != "BaseModel":
-                print("** class doesn't exist **")
-            elif len(input) == 1:
-                print("** instance id missing **")
+        elif len(input) == 1:
+            print("** instance id missing **")
+            return
+        if input[0] in self.types:
+            allObjs = models.storage.all()
+            realID = input[0] + "." + input[1]
+            if realID in allObjs:
+                print(allObjs[realID])
             else:
-                allObjs = models.storage.all()
-                realID = "BaseModel" + "." + input[1]
-                if realID in allObjs:
-                    print(allObjs[realID])
-                else:
-                    print("** no instance found **")
+                print("** no instance found **")
+        else:
+            print("** class doesn't exist **")
 
     def do_destroy(self, arg):
         """Destroy an object"""
         input = arg.split()
         if len(input) == 2:
-            realID = "BaseModel" + "." + input[1]
+            realID = input[0] + "." + input[1]
         allObjs = models.storage.all()
         if len(arg) == 0:
             print("** class name missing **")
-        elif input[0] != "BaseModel":
-            print(input[0])
-            print("** class doesn't exist **")
         elif len(input) == 1:
             print("** instance id missing **")
-        elif realID in allObjs:
-            allObjs.pop(realID)
+            return
+        if input[0] in self.types:
+            if realID in allObjs:
+                allObjs.pop(realID)
+            else:
+                print("** no instance found **")
         else:
-            print("** no instance found **")
-
+            print(input[0], "** class doesn't exist **")
     def do_all(self, arg):
         """Show all objects"""
         input = arg.split()
@@ -95,9 +97,9 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             for k in allObjs:
                 print(allObjs[k])
-        elif (len(input) == 1 and input[0] == "BaseModel"):
+        elif (len(input) == 1 and input[0] in self.types):
             for k in allObjs:
-                if "BaseModel" in k:
+                if input[0] in k:
                     print(allObjs[k])
         else:
             print("** class doesn't exist **")
@@ -110,24 +112,24 @@ class HBNBCommand(cmd.Cmd):
         insize = len(input)
         if insize == 0:
             print("** class name missing **")
-        elif input[0] != "BaseModel":
-            print("** class doesn't exist **")
         elif insize == 1:
             print("** instance id missing **")
         elif insize == 2:
             print("** attribute name missing **")
         elif insize == 3:
             print("** value missing **")
-        if insize >= 4:
+        if insize >= 4 and input[0] in self.types:
             realID = input[0] + "." + input[1]    
             if realID in allObjs:
                 d = allObjs[realID].to_dict()
                 d[input[2]] = input[3]
                 d.pop("updated_at")
-                BaseModel(**d)
+                d.pop("__class__")
+                self.types[input[0]](**d)
             else:
                 print("** no instance found **")
-
+        else:
+            print("** class doesn't exist **")
 if __name__ == '__main__':
     console = HBNBCommand()
     console.cmdloop()
