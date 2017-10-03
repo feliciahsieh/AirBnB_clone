@@ -97,6 +97,7 @@ class HBNBCommand(cmd.Cmd):
             if realID in allObjs:
                 allObjs.pop(realID)
                 self.__count[input[0]] -= 1
+                models.storage.save()
             else:
                 print("** no instance found **")
         else:
@@ -116,25 +117,35 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_update(self, arg):
+    def do_update(self, *args, **kwargs):
         """Update obj atribute with info
         """
-        input = arg.split()
+        if len(args):
+            input = args
+            #arg.split()
         allObjs = models.storage.all()
         insize = len(input)
-        if insize == 0:
-            print("** class name missing **")
-        elif insize == 1:
-            print("** instance id missing **")
-        elif insize == 2:
-            print("** attribute name missing **")
-        elif insize == 3:
-            print("** value missing **")
-        if insize >= 4 and input[0] in self.types:
+        if len(kwargs) == 0:
+            if insize == 0:
+                print("** class name missing **")
+                return
+            elif insize == 1:
+                print("** instance id missing **")
+                return
+            elif insize == 2:
+                print("** attribute name missing **")
+                return
+            elif insize == 3:
+                print("** value missing **")
+                return
+        if  input[0] in self.types:
             realID = input[0] + "." + input[1]
             if realID in allObjs:
                 d = allObjs[realID].to_dict()
-                d[input[2]] = input[3]
+                if len(kwargs) >= 1:
+                    d.update(kwargs)
+                else:
+                    d[input[2]] = input[3]
                 d.pop("updated_at")
                 d.pop("__class__")
                 self.types[input[0]](**d)
@@ -146,8 +157,9 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """default behavior method"""
         import re
-        methods = {'all':self.do_all, 'show':self.do_show}
-        ln = re.split("[.()]", line)
+        methods = {'all':self.do_all, 'show':self.do_show, 'destroy':self.do_destroy, 
+                   'update':self.do_update}
+        ln = re.split("[.,()]", line)
         if len(ln) > 1:
             str = ""
             for i, j in enumerate(ln):
