@@ -5,6 +5,12 @@ import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -23,7 +29,8 @@ class HBNBCommand(cmd.Cmd):
         self.intro =  "******************************************************\n"
         self.intro += "* Welcome to the AirBnB clone. Type help for cmds    *\n"
         self.intro += "******************************************************\n"
-        self.types = {'BaseModel':BaseModel, 'User':User}
+        self.types = {'BaseModel':BaseModel, 'User':User, 'State':State, 'City':City, 
+                      'Amenity':Amenity, 'Place':Place, 'Review':Review}
 
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
