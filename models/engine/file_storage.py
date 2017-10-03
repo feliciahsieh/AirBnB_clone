@@ -15,6 +15,13 @@ class FileStorage:
         """
         self.__file_path = "file.json"
         self.__objects = {}
+        self.__count = {'BaseModel': 0, 'User': 0, 'State': 0,
+                        'City': 0, 'Amenity': 0, 'Place': 0,
+                        'Review': 0}
+
+    def count(self):
+        """return objcount"""
+        return self.__count
 
     def all(self):
         """
@@ -61,7 +68,14 @@ class FileStorage:
         """
         from models.base_model import BaseModel
         from models.user import User
-        classesD = {'BaseModel': BaseModel, 'User': User}
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+        classesD = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                    'City': City, 'Amenity': Amenity, 'Place': Place,
+                    'Review': Review}
         try:
             with open(self.__file_path, "r") as jsf:
                 js = jsf.read()
@@ -70,5 +84,6 @@ class FileStorage:
                 name = key.split(".")[0]
                 if name in classesD:
                     self.__objects[key] = classesD[name](**js[key])
+                    self.__count[name] += 1
         except:
             return

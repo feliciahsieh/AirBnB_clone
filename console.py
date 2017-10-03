@@ -32,7 +32,8 @@ class HBNBCommand(cmd.Cmd):
         self.types = {'BaseModel': BaseModel, 'User': User, 'State': State,
                       'City': City, 'Amenity': Amenity, 'Place': Place,
                       'Review': Review}
-
+        self.__count = models.storage.count()
+        
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
         """Quit command to exit the program
@@ -59,6 +60,7 @@ class HBNBCommand(cmd.Cmd):
             obj = self.types[arg]()
             obj.save()
             print('{}'.format(obj.id))
+            self.__count[obj.__class__.__name__] += 1
         else:
             print("** class doesn't exist **")
 
@@ -94,6 +96,7 @@ class HBNBCommand(cmd.Cmd):
         if input[0] in self.types:
             if realID in allObjs:
                 allObjs.pop(realID)
+                self.__count[input[0]] -= 1
             else:
                 print("** no instance found **")
         else:
@@ -140,16 +143,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    @classmethod
-    def count(cls):
-        """Count number of instances of a class
-        """
-        count = 0
-        allObjs = storage.all()
-        for obj in allObjs:
-            if cls.__name__ in obj:
-                count += 1
-        print(count)
+    def default(self, line):
+        """default behavior method"""
+        import re
+        methods = {'all':self.do_all, 'show':self.do_show}
+        ln = re.split("[.()]", line)
+        if len(ln) > 1:
+            if ln[1] in methods:
+                methods[ln[1]](ln[0])
+            elif ln[1] == "count":
+                print(self.__count[ln[0]])
+        else:
+            print("**bad command**")
 
 if __name__ == '__main__':
     console = HBNBCommand()
