@@ -139,6 +139,18 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         else:
             print("** class doesn't exist **")
+
+    @classmethod
+    def count(cls):
+        """Count number of instances of a class
+        """
+        count = 0
+        allObjs = storage.all()
+        for obj in allObjs:
+            if cls.__name__ in obj:
+                count += 1
+        print(count)
+
 if __name__ == '__main__':
     console = HBNBCommand()
     console.cmdloop()
