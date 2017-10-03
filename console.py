@@ -26,11 +26,12 @@ class HBNBCommand(cmd.Cmd):
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.prompt = "(hbnb) "
-        self.intro =  "******************************************************\n"
-        self.intro += "* Welcome to the AirBnB clone. Type help for cmds    *\n"
-        self.intro += "******************************************************\n"
-        self.types = {'BaseModel':BaseModel, 'User':User, 'State':State, 'City':City, 
-                      'Amenity':Amenity, 'Place':Place, 'Review':Review}
+        self.intro = "****************************************************\n"
+        self.intro += "* Welcome to the AirBnB clone. Type help for cmds  *\n"
+        self.intro += "****************************************************\n"
+        self.types = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                      'City': City, 'Amenity': Amenity, 'Place': Place,
+                      'Review': Review}
 
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
@@ -97,6 +98,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         else:
             print(input[0], "** class doesn't exist **")
+
     def do_all(self, arg):
         """Show all objects"""
         input = arg.split()
@@ -126,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
         elif insize == 3:
             print("** value missing **")
         if insize >= 4 and input[0] in self.types:
-            realID = input[0] + "." + input[1]    
+            realID = input[0] + "." + input[1]
             if realID in allObjs:
                 d = allObjs[realID].to_dict()
                 d[input[2]] = input[3]
