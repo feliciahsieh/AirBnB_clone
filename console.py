@@ -149,8 +149,14 @@ class HBNBCommand(cmd.Cmd):
         methods = {'all':self.do_all, 'show':self.do_show}
         ln = re.split("[.()]", line)
         if len(ln) > 1:
+            str = ""
+            for i, j in enumerate(ln):
+                if i != 1:
+                    j = j.strip('"')
+                    str += j
+                    str += " "
             if ln[1] in methods:
-                methods[ln[1]](ln[0])
+                methods[ln[1]](str)
             elif ln[1] == "count":
                 print(self.__count[ln[0]])
         else:
