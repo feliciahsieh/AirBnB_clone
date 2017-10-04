@@ -1,6 +1,6 @@
 # HAirBnB Clone
 
-<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBClone.jpg" style="height:15%;width:15%" />
+<p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBClone.jpg" style="height:15%;width:15%" /></p>
 
 ## Welcome
 HAirBnB is a subset of the the popular AirBnB app, where people can rent out their lodgings similar to a hotel for a price. A place is listed on the website with information about the place (such as the number of rooms, guests, price, location), amenities, and reviews of the listing. Information about the User (renter and lister) is also collected.
@@ -9,13 +9,14 @@ Phase I is the creation of the Command-Line tool, "console", using Python's "cmd
 
 The code uses object-oriented programming, the core object is the "BaseModel" object. The other objects derived from BaseModel include User, Place, Review, Amenity, City, and State.
 
-Our project is written entirely in Python.
+Our project is written entirely in Python and uses the Python "cmd" module.
 
 ## Table of Contents
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Example Instructions](#example-instructions)
+* [Testing](#testing)
 * [Credits](#credits)
 * [License](#license)
 
@@ -25,29 +26,34 @@ Our project is written entirely in Python.
 * PEP 8 styling (v1.7)
 
 ## Installation
-In your terminal, git clone the directory with the following command:
+The prompt is "~/AirBnB_clone$". And so, in your terminal, git clone the directory with the following command:
+
 ```
-https://github.com/feliciahsieh/AirBnB_clone.git
+~/AirBnB_clone$ git clone https://github.com/feliciahsieh/AirBnB_clone.git
 ```
 
 To run the Command-line tool, "console", type
 
-```sh
-./console
+```
+~/AirBnB_clone$ ./console
 ```
 
-If you as a developer would like to fork our current project and create your own domain-specific HAirBnB, please contact us. See the AUTHORS file.
+If you are a developer who would like to fork our current project to create your own domain-specific HAirBnB, please contact us. See the AUTHORS file.
 
 ## Usage
-```sh
-./console
+
+It is recommended that the console be run interactively. Although there is a non-interactive version. See below.
+
+```
+~/AirBnB_clone$ ./console
 ```
 
 This is how you can use the Console interactively.
-<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBInteractive.png" style="height:15%;width:15%" />
+<p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBInteractive.png" style="height:15%;width:15%" /></p>
 
 You can "echo" the command-line options and pipe the commands into the Console tool as shown below.
-<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBNonInteractive.png" style="height:15%;width:15%" />
+
+<p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBNonInteractive.png" style="height:15%;width:15%" /></p>
 
 
 ## Example Instructions
@@ -116,6 +122,13 @@ The commands that you can use with our HAirBnB project
 | Review   | place_id         | Place id of the review        |
 |          | user_id          | User id of review writer      |
 |          | text             | Text of location review       |
+
+## Testing
+The code was tested using "unittest" in the AirBnB_clone/tests/ directory using the command:
+
+```
+~/AirBnB_clone$ python3 -m unittest discover tests
+```
 
 ## Credits
 HAirBnB is owned and maintained by Minas Anton ([@minas_anton](https://twitter.com/minas_anton)) and Felicia Hsieh ([@feliciahsiehsw](https://twitter.com/feliciahsiehsw)). You can reply to us and to [@holbertonschool](https://twitter.com/holbertonschool) on Twitter for more updates on this project and our forked projects.

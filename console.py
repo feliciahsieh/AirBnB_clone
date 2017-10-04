@@ -26,9 +26,6 @@ class HBNBCommand(cmd.Cmd):
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.prompt = "(hbnb) "
-        self.intro = "****************************************************\n"
-        self.intro += "* Welcome to the AirBnB clone. Type help for cmds  *\n"
-        self.intro += "****************************************************\n"
         self.types = {'BaseModel': BaseModel, 'User': User, 'State': State,
                       'City': City, 'Amenity': Amenity, 'Place': Place,
                       'Review': Review}
