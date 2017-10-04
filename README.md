@@ -1,6 +1,6 @@
 # HAirBnB Clone
 
-<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBClone.jpg" style="height:15%;width:15%" />
+<p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBClone.jpg" style="height:15%;width:15%" /></p>
 
 ## Welcome
 HAirBnB is a subset of the the popular AirBnB app, where people can rent out their lodgings similar to a hotel for a price. A place is listed on the website with information about the place (such as the number of rooms, guests, price, location), amenities, and reviews of the listing. Information about the User (renter and lister) is also collected.
@@ -36,22 +36,25 @@ https://github.com/feliciahsieh/AirBnB_clone.git
 
 To run the Command-line tool, "console", type
 
-```sh
-./console
+```
+~/AirBnB_clone$ ./console
 ```
 
 If you as a developer would like to fork our current project and create your own domain-specific HAirBnB, please contact us. See the AUTHORS file.
 
 ## Usage
-```sh
-./console
+
+It is recommended that the console be run interactively. Although there is a non-interactive version. See below.
+
+```
+~/AirBnB_clone$ ./console
 ```
 
 This is how you can use the Console interactively.
-<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBInteractive.png" style="height:15%;width:15%" />
+<p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBInteractive.png" style="height:15%;width:15%" /></p>
 
 You can "echo" the command-line options and pipe the commands into the Console tool as shown below.
-<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBNonInteractive.png" style="height:15%;width:15%" />
+<p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBNonInteractive.png" style="height:15%;width:15%" /></p>
 
 
 ## Example Instructions
