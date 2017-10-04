@@ -1,9 +1,9 @@
-# AirBnB Clone
+# HAirBnB Clone
 
 <img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBClone.jpg" style="height:15%;width:15%" />
 
 ## Welcome
-AirBnB is a subset of the the popular AirBnB app, where people can rent out their lodgings similar to a hotel for a price. A place is listed on the website with information about the place (such as the number of rooms, guests, price, location), amenities, and reviews of the listing. Information about the User (renter and lister) is also collected.
+HAirBnB is a subset of the the popular AirBnB app, where people can rent out their lodgings similar to a hotel for a price. A place is listed on the website with information about the place (such as the number of rooms, guests, price, location), amenities, and reviews of the listing. Information about the User (renter and lister) is also collected.
 
 Phase I is the creation of the Command-Line tool, "console", using Python's "cmd" module. This tool can Create, Retrieve, Update, and Delete (CRUD) table data in a few formats (see below). The command tool takes advantages of the Python "cmd" module. All of the table data is saved to a JSON file initially. A database will be incorporated in a future development phase. The Console should be able to be run in interactive mode and non-interactive mode.
 
@@ -36,47 +36,63 @@ To run the Command-line tool, "console", type
 ./console
 ```
 
-If you as a developer would like to fork our current project and create your own domain-specific AirBnB, please contact us. See the AUTHORS file.
+If you as a developer would like to fork our current project and create your own domain-specific HAirBnB, please contact us. See the AUTHORS file.
 
 ## Usage
 ```sh
 ./console
 ```
 
-[Insert image of Interactive mode]
-[Insert image of Non-interactive mode]
+This is how you can use the Console interactively.
+<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBInteractive.png" style="height:15%;width:15%" />
+
+You can "echo" the command-line options and pipe the commands into the Console tool as shown below.
+<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBNonInteractive.png" style="height:15%;width:15%" />
+
 
 ## Example Instructions
-The commands that you can use with our AirBnB project
+The commands that you can use with our HAirBnB project
 
 | Category    | Instruction                               | Description                                                                     |
 |-------------|-------------------------------------------|---------------------------------------------------------------------------------|
+| Console     | help [cmd]                                | Displays help text to user                                                      |
+|             | quit                                      | Quits Console                                                                   |
+|             | EOF or <ctrl><d>                          | Quits Console                                                                   |
+| General     | all [CLASS]                               | Display class dictionary                                                        |
 | BaseModel   | create BaseModel                          | Creates BaseModel instance with a unique ID, saves it to JSON, and prints ID    |
 |             | show BaseModel [ID]                       | Displays the specific BaseModel instance                                        |
 |             | destroy BaseModel [ID]                    | Deletes the specific BaseModel instance                                         |
-|             | update BaseModel [ID] [Attribute] [Value] | Updates the specific instance with data given                                   |
+|             | update BaseModel [ID] [ATTRIBUTE] [VALUE] | Updates the specific instance with data given                                   |
 | User        | create User                               | Creates User instance with a unique ID, saves it to JSON, and prints ID         |
 |             | show User [ID]                            | Displays the specific User instance                                             |
 |             | destroy User [ID]                         | Deletes the specific User instance                                              |
-|             | update User [ID] [Attribute] [Value]      | Updates the specific instance with data given                                   |
+|             | update User [ID] [ATTRIBUTE] [VALUE]      | Updates the specific instance with data given                                   |
 | Place       | create Place                              | Creates Place  instance with a unique ID, saves it to JSON, and prints ID       |
 |             | show Places [ID]                          | Displays the specific Places instance                                           |
 |             | destroy Place [ID]                        | Deletes the specific BaseModel instance                                         |
-|             | update Place [ID] [Attribute] [Value]     | Updates the specific instance with data given                                   |
+|             | update Place [ID] [ATTRIBUTE] [VALUE]     | Updates the specific instance with data given                                   |
+| Amenity     | create Amenity                            | Creates Amenity instance                                                        |
+|             | show Amenity [ID]                         | Displays the specific Amenity instance                                          |
+|             | destroy Amenity [ID]                      | Deletes the specific Amenity instance                                           |
+|             | update Amenity [ID] [ATTRIBUTE] [VALUE]   | Updates the specific instance with data given                                   |
 | City        | create City                               | Creates City instance with a unique ID, saves it to JSON, and prints ID         |
 |             | show City [ID]                            | Displays the specific City instance                                             |
 |             | destroy City [ID]                         | Deletes the specific City instance                                              |
-|             | update City [ID] [Attribute] [Value]      | Updates the specific instance with data given                                   |
+|             | update City [ID] [ATTRIBUTE] [VALUE]      | Updates the specific instance with data given                                   |
 | State       | create State                              | Creates States with a unique ID, saves it to JSON, and prints ID                |
 |             | show State [ID]                           | Displays the specific State instance                                            |
 |             | destroy State [ID]                        | Deletes the specific State instance                                             |
-|             | update State [ID] [Attribute] [Value]     | Updates the specific instance with data given                                   |
+|             | update State [ID] [ATTRIBUTE] [VALUE]     | Updates the specific instance with data given                                   |
+
+[CLASS] include classes used in the app such as "BaseModel", "User", "Place", "Amenity", "City", "State".
 
 [ID] is of the format,  "1234-1234-1234"
 
-[Attribute] has the following set attributes, but can be appended with additional, dynamic attributes: Set attributes are:
+[ATTRIBUTE] has the following set attributes, but can be appended with additional, dynamic attributes: See below.
 
-| Category | Attribute        | Description [Attribute Value] |
+[VALUE] include the attribute values as determined by the user of the Console. See below.
+
+| Category | [ATTRIBUTE]      | Description [ATTRIBUTE VALUE] |
 |----------|------------------|-------------------------------|
 | User     | email            | Email address                 |
 |          | password         | User's password               |
@@ -102,7 +118,7 @@ The commands that you can use with our AirBnB project
 |          | text             | Text of location review       |
 
 ## Credits
-AirBnB is owned and maintained by Minas Anton ([@minas_anton](https://twitter.com/minas_anton)) and Felicia Hsieh ([@feliciahsiehsw](https://twitter.com/feliciahsiehsw)). You can reply to us and to [@holbertonschool](https://twitter.com/holbertonschool) on Twitter for more updates on this project and our forked projects.
+HAirBnB is owned and maintained by Minas Anton ([@minas_anton](https://twitter.com/minas_anton)) and Felicia Hsieh ([@feliciahsiehsw](https://twitter.com/feliciahsiehsw)). You can reply to us and to [@holbertonschool](https://twitter.com/holbertonschool) on Twitter for more updates on this project and our forked projects.
 
 ## License
-AirBnB is released under the MIT license. See [LICENSE](https://github.com/feliciahsieh/AirBnB_clone/blob/master/LICENSE) for details.
+HAirBnB is released under the MIT license. See [LICENSE](https://github.com/feliciahsieh/AirBnB_clone/blob/master/LICENSE) for details.
