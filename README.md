@@ -1,6 +1,6 @@
 # AirBnB Clone
 
-<img src="https://github.com/srinitude/monty/blob/master/monty.png" style="height:15%;width:15%" />
+<img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBClone.jpg" style="height:15%;width:15%" />
 
 ## Welcome
 AirBnB is a subset of the the popular AirBnB app, where people can rent out their lodgings similar to a hotel for a price. A place is listed on the website with information about the place (such as the number of rooms, guests, price, location), amenities, and reviews of the listing. Information about the User (renter and lister) is also collected.
