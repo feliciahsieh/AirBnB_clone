@@ -10,16 +10,13 @@ Phase I is the creation of the Command-Line tool, "console", using Python's "cmd
 The code uses object-oriented programming, the core object is the "BaseModel" object. The other objects derived from BaseModel include User, Place, Review, Amenity, City, and State.
 
 Our project is written entirely in Python and uses the Python "cmd" module.
-The code was tested using "unittest" in the AirBnB_clone/tests/ directory using the command:
-```
-python3 -m unittest discover tests
-```
 
 ## Table of Contents
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Example Instructions](#example-instructions)
+* [Testing](#testing)
 * [Credits](#credits)
 * [License](#license)
 
@@ -125,6 +122,13 @@ The commands that you can use with our HAirBnB project
 | Review   | place_id         | Place id of the review        |
 |          | user_id          | User id of review writer      |
 |          | text             | Text of location review       |
+
+## Testing
+The code was tested using "unittest" in the AirBnB_clone/tests/ directory using the command:
+
+```
+~/AirBnB_clone$ python3 -m unittest discover tests
+```
 
 ## Credits
 HAirBnB is owned and maintained by Minas Anton ([@minas_anton](https://twitter.com/minas_anton)) and Felicia Hsieh ([@feliciahsiehsw](https://twitter.com/feliciahsiehsw)). You can reply to us and to [@holbertonschool](https://twitter.com/holbertonschool) on Twitter for more updates on this project and our forked projects.
