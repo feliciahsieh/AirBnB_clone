@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         if arg in self.types:
             obj = self.types[arg]()
             obj.save()
-            print('{}'.format(obj.id))
+            print(obj.id)
             self.__count[obj.__class__.__name__] += 1
         else:
             print("** class doesn't exist **")
@@ -117,63 +117,60 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_update(self, *args, **kwargs):
+    def do_update(self, args, **kwargs):
         """Update obj atribute with info
         """
-        if len(args):
-            input = args
-            # arg.split()
-        allObjs = models.storage.all()
-        insize = len(input)
-        if len(kwargs) == 0:
-            if insize == 0:
-                print("** class name missing **")
-                return
-            elif insize == 1:
-                print("** instance id missing **")
-                return
-            elif insize == 2:
-                print("** attribute name missing **")
-                return
-            elif insize == 3:
-                print("** value missing **")
-                return
-        if input[0] in self.types:
-            realID = input[0] + "." + input[1]
-            if realID in allObjs:
-                d = allObjs[realID].to_dict()
-                if len(kwargs) >= 1:
-                    d.update(kwargs)
-                else:
-                    d[input[2]] = input[3]
-                d.pop("updated_at")
-                d.pop("__class__")
-                self.types[input[0]](**d)
+        if args:
+            args = args.split()
+            argsize = len(args)
+            if argsize >= 2:
+                ID = args[0] + "." + args[1]
             else:
-                print("** no instance found **")
-        else:
-            print("** class doesn't exist **")
+                if argsize == 1:
+                    print("** instance id missing **")
+                elif argsize == 0:
+                    print("** class name missing **")
+                return
+        try:
+            d = models.storage.all()[ID].to_dict()
+            if kwargs:
+                d.update(kwargs)
+            else:
+                for i in range(0, argsize, 2):
+                    if i >= 2:
+                        args[i] = args[i].strip(':')
+                        args[i] = args[i].strip('"')
+                        args[i+1] = args[i+1].strip('"')
+                        d[args[i]] = args[i+1]
+            d.pop("updated_at")
+            d.pop("__class__")
+            self.types[args[0]](**d)
+        except:
+            print("** no instance found **")
+        
+
 
     def default(self, line):
         """default behavior method"""
         import re
-
+        import ast
+        js = {}
         methods = {'all': self.do_all, 'show': self.do_show,
                    'destroy': self.do_destroy, 'update': self.do_update}
-        ln = re.split("[.,()]", line)
-        if len(ln) > 1:
-            str = ""
-            for i, j in enumerate(ln):
-                if i != 1:
-                    j = j.strip('"')
-                    str += j
-                    str += " "
-            if ln[1] in methods:
-                methods[ln[1]](str)
-            elif ln[1] == "count":
-                print(self.__count[ln[0]])
-        else:
-            print("**bad command**")
+        ln = re.split('[.,()]', line)
+        if '{' in line:
+            js = ast.literal_eval(re.search('({.+})', line).group(0))
+            ln = ln[:3]
+        meth = ln.pop(1)
+        if meth == "show" or meth == "update":
+            ln[1] = ln[1].strip('"')
+        elif meth == "count":
+            print(self.__count[ln[0]])
+            return
+        ln = " ".join(ln)
+        ln = ln.replace('\'','"') 
+        if meth in methods:
+            methods[meth](ln, **js)
 
 if __name__ == '__main__':
     console = HBNBCommand()

@@ -8,5 +8,5 @@ class Amenity(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """class constructon"""
-        self.name = ""
-        super().__init__(**kwargs)
+        self.name = kwargs.pop('name', "")
+        super().__init__(*args, **kwargs)

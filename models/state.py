@@ -7,5 +7,5 @@ class State(BaseModel):
     """Class State"""
     def __init__(self, *args, **kwargs):
         """class constructor"""
-        self.name = ""
-        super().__init__(**kwargs)
+        self.name = kwargs.pop('name', "")
+        super().__init__(*args, **kwargs)

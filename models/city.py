@@ -8,6 +8,6 @@ class City(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """class constructon"""
-        self.state_id = ""
-        self.name = ""
-        super().__init__(**kwargs)
+        self.state_id = kwargs.pop('state_id', "")
+        self.name = kwargs.pop('name', "")
+        super().__init__(*args, **kwargs)

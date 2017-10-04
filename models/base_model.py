@@ -80,9 +80,8 @@ class BaseModel:
             entire copy of dictionary instance and must stringify some
             JSON modifications
         """
-        d = {}
         d = self.__dict__.copy()
-        d['__class__'] = "BaseModel"
+        d['__class__'] = self.__class__.__name__
 
         format = "%Y-%m-%dT%H:%M:%S.%f"
         d['created_at'] = str(self.__dict__['created_at'].strftime(format))
