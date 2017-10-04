@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
                       'City': City, 'Amenity': Amenity, 'Place': Place,
                       'Review': Review}
         self.__count = models.storage.count()
-        
+
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
         """Quit command to exit the program
@@ -122,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if len(args):
             input = args
-            #arg.split()
+            # arg.split()
         allObjs = models.storage.all()
         insize = len(input)
         if len(kwargs) == 0:
@@ -138,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
             elif insize == 3:
                 print("** value missing **")
                 return
-        if  input[0] in self.types:
+        if input[0] in self.types:
             realID = input[0] + "." + input[1]
             if realID in allObjs:
                 d = allObjs[realID].to_dict()
@@ -157,8 +157,9 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """default behavior method"""
         import re
-        methods = {'all':self.do_all, 'show':self.do_show, 'destroy':self.do_destroy, 
-                   'update':self.do_update}
+
+        methods = {'all': self.do_all, 'show': self.do_show,
+                   'destroy': self.do_destroy, 'update': self.do_update}
         ln = re.split("[.,()]", line)
         if len(ln) > 1:
             str = ""
