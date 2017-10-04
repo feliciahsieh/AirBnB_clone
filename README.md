@@ -12,7 +12,7 @@ The code uses object-oriented programming, the core object is the "BaseModel" ob
 Our project is written entirely in Python and uses the Python "cmd" module.
 The code was tested using "unittest" in the AirBnB_clone/tests/ directory using the command:
 ```
-python3 -m unittest discover tests".
+python3 -m unittest discover tests
 ```
 
 ## Table of Contents
@@ -29,9 +29,10 @@ python3 -m unittest discover tests".
 * PEP 8 styling (v1.7)
 
 ## Installation
-In your terminal, git clone the directory with the following command:
+The prompt is "~/AirBnB_clone$". And so, in your terminal, git clone the directory with the following command:
+
 ```
-https://github.com/feliciahsieh/AirBnB_clone.git
+~/AirBnB_clone$ git clone https://github.com/feliciahsieh/AirBnB_clone.git
 ```
 
 To run the Command-line tool, "console", type
@@ -40,7 +41,7 @@ To run the Command-line tool, "console", type
 ~/AirBnB_clone$ ./console
 ```
 
-If you as a developer would like to fork our current project and create your own domain-specific HAirBnB, please contact us. See the AUTHORS file.
+If you are a developer who would like to fork our current project to create your own domain-specific HAirBnB, please contact us. See the AUTHORS file.
 
 ## Usage
 
@@ -54,6 +55,7 @@ This is how you can use the Console interactively.
 <p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBInteractive.png" style="height:15%;width:15%" /></p>
 
 You can "echo" the command-line options and pipe the commands into the Console tool as shown below.
+
 <p align="center"><img src="https://github.com/feliciahsieh/AirBnB_clone/blob/master/AirBnBNonInteractive.png" style="height:15%;width:15%" /></p>
 
 
