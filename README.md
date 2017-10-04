@@ -9,7 +9,11 @@ Phase I is the creation of the Command-Line tool, "console", using Python's "cmd
 
 The code uses object-oriented programming, the core object is the "BaseModel" object. The other objects derived from BaseModel include User, Place, Review, Amenity, City, and State.
 
-Our project is written entirely in Python.
+Our project is written entirely in Python and uses the Python "cmd" module.
+The code was tested using "unittest" in the AirBnB_clone/tests/ directory using the command:
+```
+python3 -m unittest discover tests".
+```
 
 ## Table of Contents
 * [Requirements](#requirements)
