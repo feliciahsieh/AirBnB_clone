@@ -76,30 +76,30 @@ The commands that you can use with our AirBnB project
 
 [Attribute] has the following set attributes, but can be appended with additional, dynamic attributes: Set attributes are:
 
-| Category | Attributes       | Description                  |
-|----------|------------------|------------------------------|
-| User     | email            | Email address                |
-|          | password         | User's password              |
-|          | first_name       | User's first name            |
-|          | last_name        | User's last nam              |
-| State    | name             | state name                   |
-| City     | name             | city name                    |
-|          | state_id         | state ID                     |
-| Amenity  | name             | Amenity name                 |
-| Place    | city_id          | location's city ID           |
-|          | user_id          | owner's ID                   |
-|          | name             | location's name              |
-|          | description      | location's description       |
-|          | number_rooms     | number of rooms              |
-|          | number_bathrooms | number of bathrooms          |
-|          | max_guest        | number of guests at location |
-|          | price_by_night   | price rate per day           |
-|          | latitude         | latitude of location         |
-|          | longitude        | longitude of location        |
-|          | amenity_ids      | amenity of location          |
-| Review   | place_id         | place id of the review       |
-|          | user_id          | user id of review writer     |
-|          | text             | text of location review      |
+| Category | Attribute        | Description [Attribute Value] |
+|----------|------------------|-------------------------------|
+| User     | email            | Email address                 |
+|          | password         | User's password               |
+|          | first_name       | User's first name             |
+|          | last_name        | User's last name              |
+| State    | name             | State name                    |
+| City     | name             | City name                     |
+|          | state_id         | State ID                      |
+| Amenity  | name             | Amenity name                  |
+| Place    | city_id          | Location's city ID            |
+|          | user_id          | Owner's ID                    |
+|          | name             | Location's name               |
+|          | description      | Location's description        |
+|          | number_rooms     | Number of rooms at place      |
+|          | number_bathrooms | Number of bathrooms at place  |
+|          | max_guest        | Number of guests at place     |
+|          | price_by_night   | Rental price per day          |
+|          | latitude         | Latitude of location          |
+|          | longitude        | Longitude of location         |
+|          | amenity_ids      | Amenity of location           |
+| Review   | place_id         | Place id of the review        |
+|          | user_id          | User id of review writer      |
+|          | text             | Text of location review       |
 
 ## Credits
 AirBnB is owned and maintained by Minas Anton ([@minas_anton](https://twitter.com/minas_anton)) and Felicia Hsieh ([@feliciahsiehsw](https://twitter.com/feliciahsiehsw)). You can reply to us and to [@holbertonschool](https://twitter.com/holbertonschool) on Twitter for more updates on this project and our forked projects.
