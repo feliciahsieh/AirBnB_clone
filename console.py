@@ -133,12 +133,19 @@ class HBNBCommand(cmd.Cmd):
             if kwargs:
                 d.update(kwargs)
             else:
+                if argsize == 2:
+                    print("** attribute name missing **")
+                    return
                 for i in range(0, argsize, 2):
                     if i >= 2:
                         args[i] = args[i].strip(':')
                         args[i] = args[i].strip('"')
-                        args[i+1] = args[i+1].strip('"')
-                        d[args[i]] = args[i+1]
+                        try:
+                            args[i+1] = args[i+1].strip('"')
+                            d[args[i]] = args[i+1]
+                        except:
+                            print("** value missing **")
+                            return
             d.pop("updated_at")
             d.pop("__class__")
             self.types[args[0]](**d)
