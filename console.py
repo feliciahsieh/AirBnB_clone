@@ -153,7 +153,11 @@ class HBNBCommand(cmd.Cmd):
         if '{' in line:
             js = ast.literal_eval(re.search('({.+})', line).group(0))
             ln = ln[:3]
-        meth = ln.pop(1)
+        if len(ln) >= 2:
+            meth = ln.pop(1)
+        else:
+            print("*** Unknown syntax:", ln[0])
+            return
         if meth == "show" or meth == "update":
             ln[1] = ln[1].strip('"')
         elif meth == "count":
