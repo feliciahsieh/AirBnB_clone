@@ -83,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
         else:
-            print(input[0], "** class doesn't exist **")
+            print("** class doesn't exist **")
 
     def do_all(self, arg):
         """Show all objects"""
