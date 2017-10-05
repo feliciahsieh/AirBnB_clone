@@ -16,7 +16,6 @@ class BaseModel:
         """
         __init__ - initialze BaseModel object
         Args:
-            id(int) - initialize obj with ID or use autonumber ad ID
             args(tuple) - should have zero arguments (not used)
             kwargs(dict) - if variable exists, then init instance with data
                 Note, datetime format is 2017-09-28 21:05:54.119572
