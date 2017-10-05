@@ -5,19 +5,11 @@ import json
 
 class FileStorage:
     """class FileStorage"""
-    def __init__(self):
-        """
-        __init__ - constructor method for class FileStorage
-        Args:
-            None
-        Return:
-            None
-        """
-        self.__file_path = "file.json"
-        self.__objects = {}
-        self.__count = {'BaseModel': 0, 'User': 0, 'State': 0,
-                        'City': 0, 'Amenity': 0, 'Place': 0,
-                        'Review': 0}
+    __file_path = "file.json"
+    __objects = {}
+    __count = {'BaseModel': 0, 'User': 0, 'State': 0,
+               'City': 0, 'Amenity': 0, 'Place': 0,
+               'Review': 0}
 
     def count(self):
         """return objcount"""
