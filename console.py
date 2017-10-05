@@ -23,13 +23,10 @@ class HBNBCommand(cmd.Cmd):
         all | all [class=BaseModel]
         update [class=BaseModel] [id=1234-1234-1234] [key] [value]
     """
-    def __init__(self):
-        cmd.Cmd.__init__(self)
-        self.prompt = "(hbnb) "
-        self.types = {'BaseModel': BaseModel, 'User': User, 'State': State,
-                      'City': City, 'Amenity': Amenity, 'Place': Place,
-                      'Review': Review}
-        self.__count = models.storage.count()
+    types = {'BaseModel': BaseModel, 'User': User, 'State': State,
+             'City': City, 'Amenity': Amenity, 'Place': Place,
+             'Review': Review}
+    __count = models.storage.count()
 
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
@@ -53,11 +50,11 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
             return
-        if arg in self.types:
-            obj = self.types[arg]()
+        if arg in types:
+            obj = types[arg]()
             obj.save()
             print(obj.id)
-            self.__count[obj.__class__.__name__] += 1
+            __count[obj.__class__.__name__] += 1
         else:
             print("** class doesn't exist **")
 
@@ -69,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(input) == 1:
             print("** instance id missing **")
             return
-        if input[0] in self.types:
+        if input[0] in types:
             allObjs = models.storage.all()
             realID = input[0] + "." + input[1]
             if realID in allObjs:
@@ -90,10 +87,10 @@ class HBNBCommand(cmd.Cmd):
         elif len(input) == 1:
             print("** instance id missing **")
             return
-        if input[0] in self.types:
+        if input[0] in types:
             if realID in allObjs:
                 allObjs.pop(realID)
-                self.__count[input[0]] -= 1
+                __count[input[0]] -= 1
                 models.storage.save()
             else:
                 print("** no instance found **")
@@ -107,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             for k in allObjs:
                 print(allObjs[k])
-        elif (len(input) == 1 and input[0] in self.types):
+        elif (len(input) == 1 and input[0] in types):
             for k in allObjs:
                 if input[0] in k:
                     print(allObjs[k])
@@ -148,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                             return
             d.pop("updated_at")
             d.pop("__class__")
-            self.types[args[0]](**d)
+            types[args[0]](**d)
         except:
             print("** no instance found **")
 
@@ -167,7 +164,7 @@ class HBNBCommand(cmd.Cmd):
         if meth == "show" or meth == "update":
             ln[1] = ln[1].strip('"')
         elif meth == "count":
-            print(self.__count[ln[0]])
+            print(__count[ln[0]])
             return
         ln = " ".join(ln)
         ln = ln.replace('\'', '"')
@@ -176,4 +173,5 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     console = HBNBCommand()
+    console.prompt = "(hbnb) "
     console.cmdloop()
