@@ -51,6 +51,7 @@ class HBNBCommand(cmd.Cmd):
         input = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
+            return
         elif len(input) == 1:
             print("** instance id missing **")
             return
@@ -72,6 +73,7 @@ class HBNBCommand(cmd.Cmd):
         allObjs = models.storage.all()
         if len(arg) == 0:
             print("** class name missing **")
+            return
         elif len(input) == 1:
             print("** instance id missing **")
             return
