@@ -151,8 +151,6 @@ class HBNBCommand(cmd.Cmd):
             self.types[args[0]](**d)
         except:
             print("** no instance found **")
-        
-
 
     def default(self, line):
         """default behavior method"""
@@ -172,7 +170,7 @@ class HBNBCommand(cmd.Cmd):
             print(self.__count[ln[0]])
             return
         ln = " ".join(ln)
-        ln = ln.replace('\'','"') 
+        ln = ln.replace('\'', '"')
         if meth in methods:
             methods[meth](ln, **js)
 
