@@ -92,14 +92,14 @@ class HBNBCommand(cmd.Cmd):
         str = "["
         if len(arg) == 0:
             for k in allObjs:
-                str = str + allObjs[k].__str__() + '\n'
-            str = str[:-1] + ']'
+                str = str + allObjs[k].__str__() + ', '
+            str = str[:-2] + ']'
             print(str)
         elif (len(input) == 1 and input[0] in models.types):
             for k in allObjs:
                 if input[0] in k:
-                    str = str + allObjs[k].__str__() + '\n'
-            str = str[:-1] + ']'
+                    str = str + allObjs[k].__str__() + ', '
+            str = str[:-2] + ']'
             print(str)
         else:
             print("** class doesn't exist **")
