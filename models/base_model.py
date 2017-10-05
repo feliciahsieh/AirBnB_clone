@@ -4,7 +4,7 @@ File: base_model.py
 """
 import uuid
 import datetime
-from models import storage
+import models
 # import storage
 # from datetime import datetime
 # import models
@@ -48,8 +48,8 @@ class BaseModel:
             if key == "__class__":
                 continue
             setattr(self, key,  kwargs[key])
-        storage.new(self)
-        storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def __str__(self):
         """
@@ -72,7 +72,7 @@ class BaseModel:
             None
         """
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """

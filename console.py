@@ -3,13 +3,6 @@
 
 import cmd
 import models
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,11 +16,6 @@ class HBNBCommand(cmd.Cmd):
         all | all [class=BaseModel]
         update [class=BaseModel] [id=1234-1234-1234] [key] [value]
     """
-    types = {'BaseModel': BaseModel, 'User': User, 'State': State,
-             'City': City, 'Amenity': Amenity, 'Place': Place,
-             'Review': Review}
-    __count = models.storage.count()
-
     # ----- basic AirBnB clone commands -----
     def do_quit(self, args):
         """Quit command to exit the program
@@ -50,11 +38,11 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
             return
-        if arg in types:
-            obj = types[arg]()
+        if arg in models.types:
+            obj = models.types[arg]()
             obj.save()
             print(obj.id)
-            __count[obj.__class__.__name__] += 1
+            models.count[obj.__class__.__name__] += 1
         else:
             print("** class doesn't exist **")
 
@@ -66,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(input) == 1:
             print("** instance id missing **")
             return
-        if input[0] in types:
+        if input[0] in models.types:
             allObjs = models.storage.all()
             realID = input[0] + "." + input[1]
             if realID in allObjs:
@@ -87,10 +75,10 @@ class HBNBCommand(cmd.Cmd):
         elif len(input) == 1:
             print("** instance id missing **")
             return
-        if input[0] in types:
+        if input[0] in models.types:
             if realID in allObjs:
                 allObjs.pop(realID)
-                __count[input[0]] -= 1
+                models.count[input[0]] -= 1
                 models.storage.save()
             else:
                 print("** no instance found **")
@@ -101,13 +89,18 @@ class HBNBCommand(cmd.Cmd):
         """Show all objects"""
         input = arg.split()
         allObjs = models.storage.all()
+        str = "["
         if len(arg) == 0:
             for k in allObjs:
-                print(allObjs[k])
-        elif (len(input) == 1 and input[0] in types):
+                str = str + allObjs[k].__str__() + '\n'
+            str = str[:-1] + ']'
+            print(str)
+        elif (len(input) == 1 and input[0] in models.types):
             for k in allObjs:
                 if input[0] in k:
-                    print(allObjs[k])
+                    str = str + allObjs[k].__str__() + '\n'
+            str = str[:-1] + ']'
+            print(str)
         else:
             print("** class doesn't exist **")
 
@@ -164,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
         if meth == "show" or meth == "update":
             ln[1] = ln[1].strip('"')
         elif meth == "count":
-            print(__count[ln[0]])
+            print(models.count[ln[0]])
             return
         ln = " ".join(ln)
         ln = ln.replace('\'', '"')
