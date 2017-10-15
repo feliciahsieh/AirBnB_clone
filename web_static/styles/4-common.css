@@ -1,0 +1,35 @@
+/* 4-common.css */
+* {
+    box-sizing: border-box;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: center;
+}
+
+div {
+      margin: 0px;
+      padding: 0px;
+      font-color: #484848; /* green shade */
+      font-size: 14px;
+}
+
+.container {
+      position: relative;
+      top: 70px;
+
+      max-width: 1000px;
+      margin: auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+
+      /*for id'ing purposes*/
+      /*border: 1px solid green;
+      background: yellow;*/
+}
+
+center {
+    margin: auto;
+    width: 50%;
+    border: 1px solid blue;
+    padding: 0px;
+    /* text-align: center; */
+}
