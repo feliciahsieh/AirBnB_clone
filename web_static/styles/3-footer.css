@@ -1,15 +1,19 @@
 /* 3-footer.css */
 footer {
-      position: fixed;
-      bottom: 0px;
       background: white;
       height: 60px;
       width: 100%;
+
+      position: fixed;
       left: 0px;
       right: 0px;
-      border-style: solid;
-      border-bottom: 1px #CCCCCC;
-      border-left: 0px;
-      border-right: 0px;
-      /*border-top: 0px;*/
+      bottom: 0px;
+      border-top: 1px solid #CCCCCC;
+
+      box-sizing: border-box;
+      padding: 24px
+      text-align: center;
+      font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      padding: 23px;
+      text-align: center;
 }

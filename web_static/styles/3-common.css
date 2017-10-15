@@ -1,9 +1,10 @@
 /* 3-common.css */
-div {
+body {
       box-sizing: border-box;
-      margin: 20px auto;
-      text-align: center;
+      margin: 0px;
+      padding: 0px;
       font-color: #484848;
       font-size: 14px;
       font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      text-align: center;
 }

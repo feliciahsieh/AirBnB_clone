@@ -1,17 +1,15 @@
 /* 3-header.css */
 header {
-      /*background-color: gray;*/
+      background-color: white;
+      height: 70px;
+      width: 100%;
+
       position: absolute;
       left: 0px;
       right: 0px;
       top: 0px;
-      height: 70px;
-      width: 100%;
 
-      border-top: 1px solid #CCCCCC;
-      background: url(../images/icon.png) no-repeat;
-      /*background: url(../images/logo.png) no-repeat;*/
-
-/* border bottom 1px
-logo align on left and center vertically (20px space at the left) */
+      border-bottom: 1px solid #CCCCCC;
+      background: url(../images/logo.png) no-repeat;
+      background-position: 20px 50%;
 }
