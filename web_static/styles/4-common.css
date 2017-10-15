@@ -1,4 +1,3 @@
-/* 4-common.css */
 * {
     box-sizing: border-box;
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -8,7 +7,7 @@
 div {
       margin: 0px;
       padding: 0px;
-      font-color: #484848; /* green shade */
+      color: #484848; /* green shade */
       font-size: 14px;
 }
 
